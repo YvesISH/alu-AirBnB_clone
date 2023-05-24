@@ -1,40 +1,63 @@
 #!/usr/bin/python3
 """
-Create the BaseModel class
+BAse Model Class
 """
 
 
-from uuid import uuid4
 from datetime import datetime
+from uuid import uuid4
 import models
 
+
 class BaseModel:
-"""
-BaseModel class for unique ids
-"""
-    def __init__(self):
+    """
+    Custom BaseModel class
+    """
+
+    def __init__(self, *args, **kwargs):
+        """initializes class instance
+        Args:
+            *args: unused
+            **kwargs: dictionary of attributes
         """
-        BaseModel Constructor
+        DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+            models.storage.new(self)
+        else:
+            for key, v in kwargs.items():
+                if key in ["created_at", "updated_at"]:
+                    self.__dict__[key] = datetime.strptime(v, DATE_TIME_FORMAT)
+                elif key[0] == "id":
+                    self.__dict__[key] = str(v)
+                else:
+                    self.__dict__[key] = v
+
+    def __str__(self):
+        """returns string representation of class instance
+        Returns:
+            str: string representation of class instance
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
-        """
-        Update with the current time
-        """
-        self.updated_at = datetime.now()
+        """updates attribute updated_at with current datetime"""
+        self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
+        """returns dictionary representation of class instance
+        Returns:
+            dict: dictionary representation of class instance
         """
-        Instance dictionary
-        """
-        data = self.__dict__.copy()
-        data['__class__'] = self.__class__.__name__
-        data['created_at'] = self.created.at.isoformat()
-        data['updated_at'] = self.update_at.isoformat()
-
-        return data
-
-        
+        new_objects = {}
+        for key, value in self.__dict__.items():
+            if key in ["created_at", "updated_at"]:
+                new_objects[key] = value.isoformat()
+            else:
+                new_objects[key] = value
+        new_objects["__class__"] = self.__class__.__name__
+        return new_objects
