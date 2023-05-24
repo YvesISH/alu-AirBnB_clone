@@ -1,34 +1,42 @@
 #!/usr/bin/python3
-"""This defines a class to manage file storage"""
-
-import json
-import os
+"""
+    Define 'FileStorage' class
+"""
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
-from models.amenity import Amenity
 from models.place import Place
+from models.amenity import Amenity
 from models.review import Review
+import os.path
+import json
 
 
 class FileStorage:
-    """ 
-    This is a storage engine
     """
-    __file_path = 'storage.json'
+        Represent an abstracted storage engine.
+        Purpose: Provide a way to store objects in a JSON file.
+        Attributes:
+            __file_path (str): string to represent the path to the JSON file
+            __objects (dict): dictionary to store instantiated objects
+    """
 
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        return self.__objects
+        """
+            Return '__objects' dictionary
+        """
+        return FileStorage.__objects
 
     def new(self, obj):
         """
-        Add obj with key <obj class name>
+            Add 'obj' to __objects dictionary with key <obj class name>.id
         """
-        key = obj.__class__.__name__ + '.' + obj.id
-        self.__objects[key] = obj
+        ocname = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
 
     def save(self):
         """
