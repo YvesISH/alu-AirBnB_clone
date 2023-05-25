@@ -1,16 +1,21 @@
 #!/usr/bin/python3
-""" creating a review class"""
-
+"""
+    Defines 'Review' class.
+"""
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Class that manages review objects"""
+
+    """
+        Class to manage review objects
+        Represent a review with a place id, user id and text
+        Attributes:
+            place_id (str): place's id
+            user_id (str): user's id
+            text (str): text of the review
+    """
 
     place_id = ""
     user_id = ""
     text = ""
-
-    def __init__(self, *args, **kwargs):
-        """Instantiates a Review object"""
-        super().__init__(*args, **kwargs)
