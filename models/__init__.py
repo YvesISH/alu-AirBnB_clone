@@ -1,16 +1,9 @@
-from models.base_model import BaseModel
-from models.base_model import BaseModel
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+#!/usr/bin/python3
+"""
+    Initialize & reload the FileStorage engine
+"""
+from models.engine.file_storage import FileStorage
 
-__all__ = [
-    "BaseModel",
-    "State",
-    "City",
-    "Amenity",
-    "Place",
-    "Review",
-]
+
+storage = FileStorage()
+storage.reload()
