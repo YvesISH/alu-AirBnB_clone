@@ -1,12 +1,5 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-'''state'''
 
-
-from models.base_model import BaseModel
-
-class State(BaseModel):
-=======
 """
     Define 'State' class
 """
@@ -22,5 +15,4 @@ class State(BaseModel):
             name (str): The name of the state
     """
 
->>>>>>> 0ea955ff9582d925cd4f3f015e69bcea76138b42
     name = ""
