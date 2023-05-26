@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Module that creates 'Amenity' class
+    Module to create 'Amenity' class
 """
 from models.base_model import BaseModel
 
