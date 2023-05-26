@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Define 'Place' class
+   Module to create 'Place' class
 """
 from models.base_model import BaseModel
 
