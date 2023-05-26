@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
+
     amenity inheritance
 """
-
 from models.base_model import BaseModel
 
 

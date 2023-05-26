@@ -9,7 +9,7 @@ from datetime import datetime
 
 class BaseModel:
     """
-        Represent 'BaseModel' class
+        Represent the class 'BaseModel'
     """
 
     def __init__(self, *args, **kwargs):
