@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Module that creates 'Amenity' class
+    amenity inheritance
 """
 
 from models.base_model import BaseModel
