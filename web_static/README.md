@@ -1,3 +1,1 @@
-# The Front End Design
-
-## Designed using HTML, CSS and Js
+The front end. HTML and CSS
